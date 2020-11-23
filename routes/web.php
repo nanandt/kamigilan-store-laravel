@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//   return view('welcome');
+// });
 Route::get('/debug-sentry', function () {
     throw new Exception('My first sentry error');
 });
 // Route::get('/debug-sentry', function () {
 //     throw new Exception('My first Sentry error')
 // });
+
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
