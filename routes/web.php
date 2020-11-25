@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//   return view('welcome');
-// });
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/categories', 'CategoryController@index')->name('categories');
@@ -34,6 +31,13 @@ Route::get('/dashboard/settings', 'DashboardSettingController@store')
         ->name('dashboard-settings-store');
 Route::get('/dashboard/account', 'DashboardSettingController@account')
         ->name('dashboard-settings-account');
+
+
+Route::prefix('admin')
+        ->namespace('Admin')
+        ->group(function(){
+            Route::get('/', 'DashboardController@index')->name('admin-dashboard');
+        });
 
 Auth::routes();
 
